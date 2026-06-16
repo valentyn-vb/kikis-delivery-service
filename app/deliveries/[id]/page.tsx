@@ -1,4 +1,4 @@
-import { getDeliveryById } from "@/app/lib/deliveriesService/deliveriesService";
+import { getDeliveryById } from "@/lib/deliveriesService/deliveriesService";
 import Link from "next/link";
 
 export default async function DeliveryDetails({

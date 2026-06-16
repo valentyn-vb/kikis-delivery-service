@@ -1,4 +1,4 @@
-import { getAllDeliveries } from "@/app/lib/deliveriesService/deliveriesService";
+import { getAllDeliveries } from "@/lib/deliveriesService/deliveriesService";
 import Link from "next/link";
 
 export default function DeliveryList() {

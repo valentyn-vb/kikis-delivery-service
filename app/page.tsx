@@ -1,4 +1,4 @@
-import { getAllDeliveries } from "./lib/deliveriesService/deliveriesService";
+import { getAllDeliveries } from "../lib/deliveriesService/deliveriesService";
 
 export default function Home() {
   const delivery = getAllDeliveries()[0];
