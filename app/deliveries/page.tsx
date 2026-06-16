@@ -1,4 +1,4 @@
-import { getAllDeliveries } from "@/lib/deliveriesService/deliveriesService";
+import { getAllDeliveries } from "@/app/lib/deliveriesService/deliveriesService";
 import Link from "next/link";
 
 export default function DeliveryList() {
@@ -6,11 +6,18 @@ export default function DeliveryList() {
   return (
     <ul>
       {deliveries.map((d) => (
-        <li>
-          <Link></Link>
-          <p>{d.id}</p>
-          <p>{d.pickup}</p>
-          <p>{d.status}</p>
+        <li
+          style={{
+            border: "1px solid tomato",
+            margin: "1rem",
+          }}
+          key={d.id}
+        >
+          <Link href={`/deliveries/${d.id}`}>
+            <p>{d.id}</p>
+            <p>{d.pickup}</p>
+            <p>{d.status}</p>
+          </Link>
         </li>
       ))}
     </ul>

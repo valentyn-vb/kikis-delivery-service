@@ -1,4 +1,5 @@
 import { getDeliveryById } from "@/app/lib/deliveriesService/deliveriesService";
+import Link from "next/link";
 
 export default async function DeliveryDetails({
   params,
@@ -11,6 +12,7 @@ export default async function DeliveryDetails({
 
   return (
     <>
+      <Link href="/deliveries">Go back</Link>
       <p>{delivery.id}</p>
       <p>{delivery.pickup}</p>
       <p>{delivery.status}</p>
