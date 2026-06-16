@@ -24,7 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <header>
+          <h1>Kiki’s Delivery Service</h1>
+        </header>
+        {children}
+      </body>
     </html>
   );
 }
