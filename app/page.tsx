@@ -1,13 +1,8 @@
-import { getAllDeliveries } from "../lib/deliveriesService/deliveriesService";
-
 export default async function Home() {
-  const deliveries = await getAllDeliveries();
-  const delivery = deliveries[0];
   return (
     <div>
-      <h1>{delivery.id}</h1>
-      <p>{delivery.pickup}</p>
-      <p>{delivery.destination}</p>
+      <h1>Welcome in Kiki</h1>
+      <h3>Advanced delevery service</h3>
     </div>
   );
 }
