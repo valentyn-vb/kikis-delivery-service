@@ -1,16 +1,10 @@
-import { createDelivery } from "@/lib/deliveriesService/deliveriesService";
+import { createNewDelivery } from "@/app/actions/action";
 
 export default function DeliveryForm() {
-  async function createNewDelivery(data: FormData) {
-    "use server";
-    const pickup = data.get("pickup");
-    const destination = data.get("destination");
-    if (pickup && destination) await createDelivery(pickup, destination);
-  }
   return (
     <form action={createNewDelivery}>
-      <input type="text" name="pickup" />
-      <input type="text" name="destination" />
+      <input type="text" name="pickup" required />
+      <input type="text" name="destination" required />
       <button type="submit">Save</button>
     </form>
   );
