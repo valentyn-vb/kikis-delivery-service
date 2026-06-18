@@ -2,7 +2,6 @@
 
 import { DELIVERY_STATUSES } from "@/lib/deliveriesService/types";
 import { usePathname, useRouter } from "next/navigation";
-import type { ChangeEvent } from "react";
 import {
   Select,
   SelectContent,
@@ -17,23 +16,22 @@ export default function DeliveryFilter({ value }: { value: string }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  function handleChange(event: ChangeEvent<HTMLSelectElement>) {
-    const next = event.target.value;
+  function handleStatusChange(next: string | null) {
+    if (!next) return;
+
     const query = next === "all" ? "" : `?status=${next}`;
     router.push(`${pathname}${query}`);
   }
 
   return (
-    <Select items={DELIVERY_STATUSES}>
+    <Select value={value} onValueChange={handleStatusChange}>
       <SelectTrigger className="w-full max-w-48">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Select status</SelectLabel>
-          <SelectItem key="all" value="all">
-            all
-          </SelectItem>
+          <SelectItem value="all">all</SelectItem>
           {DELIVERY_STATUSES.map((s) => (
             <SelectItem key={s} value={s}>
               {s}
