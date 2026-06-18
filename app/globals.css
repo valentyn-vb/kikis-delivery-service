@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-primary: #f4a261;
-  --color-accent: #f3a361;
+  --color-brand: tomato;
+  --color-brand-muted: aqua;
 }
 
 @media (prefers-color-scheme: dark) {

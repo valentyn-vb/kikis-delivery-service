@@ -31,7 +31,7 @@ export default async function DeliveryList({
                 </CardTitle>
                 <CardDescription>{d.status}</CardDescription>
                 <CardAction>
-                  <Button>
+                  <Button variant="brand">
                     <Link href={`/deliveries/${d.id}`}>
                       <p>Details {d.id}</p>
                     </Link>
