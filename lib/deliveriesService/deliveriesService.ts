@@ -1,7 +1,7 @@
 import "server-only";
 
 import sql from "../db/sql";
-import type { DeliveryRequest } from "./types";
+import type { DeliveryRequest, DeliveryStatus } from "./types";
 
 const deliveries: DeliveryRequest[] = [
   { id: "1", pickup: "Bakery", destination: "Clock Tower", status: "active" },
@@ -20,8 +20,16 @@ const deliveries: DeliveryRequest[] = [
   },
 ];
 
-export async function getAllDeliveries(): Promise<DeliveryRequest[]> {
-  return await sql<DeliveryRequest[]>`SELECT * FROM deliveries`;
+export async function getAllDeliveries(
+  status?: DeliveryStatus,
+): Promise<DeliveryRequest[]> {
+  if (status) {
+    return await sql<DeliveryRequest[]>`
+      SELECT * FROM deliveries WHERE status = ${status} ORDER BY id
+    `;
+  }
+
+  return await sql<DeliveryRequest[]>`SELECT * FROM deliveries ORDER BY id`;
 }
 
 export function getDeliveryById(id: string): DeliveryRequest | null {

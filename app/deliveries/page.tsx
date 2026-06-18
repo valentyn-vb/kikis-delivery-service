@@ -1,14 +1,19 @@
 import DeliveryFilter from "@/components/DeliveryFilter";
 import { getAllDeliveries } from "@/lib/deliveriesService/deliveriesService";
-import type { DeliveryStatus } from "@/lib/deliveriesService/types";
+import { DeliveryStatus } from "@/lib/deliveriesService/types";
 import Link from "next/link";
 
-export default async function DeliveryList() {
-  const deliveries = await getAllDeliveries();
-  const handleStatusChange = async (status: DeliveryStatus) => {};
+export default async function DeliveryList({
+  searchParams,
+}: PageProps<"/deliveries">) {
+  const { status }: { status?: DeliveryStatus } = await searchParams;
+  console.log("🚀 ~ DeliveryList ~ searchParams:", searchParams);
+
+  const deliveries = await getAllDeliveries(status);
+
   return (
     <>
-      <DeliveryFilter deliveries={deliveries} />
+      <DeliveryFilter value={status ?? "all"} />
       <ul>
         {deliveries.map((d) => (
           <li
