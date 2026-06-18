@@ -32,8 +32,12 @@ export async function getAllDeliveries(
   return await sql<DeliveryRequest[]>`SELECT * FROM deliveries ORDER BY id`;
 }
 
-export function getDeliveryById(id: string): DeliveryRequest | null {
-  return deliveries.find((d) => d.id === id) || null;
+export async function getDeliveryById(
+  id: string,
+): Promise<DeliveryRequest[] | null> {
+  return await sql<
+    DeliveryRequest[]
+  >`SELECT * FROM deliveries WHERE id = ${id}`;
 }
 
 export async function createDelivery(pickup: string, destination: string) {
