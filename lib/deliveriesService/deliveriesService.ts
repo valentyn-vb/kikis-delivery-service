@@ -1,11 +1,7 @@
-export type DeliveryStatus = "active" | "accepted" | "denied" | "fulfilled";
+import "server-only";
 
-export type DeliveryRequest = {
-  id: string;
-  pickup: string;
-  destination: string;
-  status: DeliveryStatus;
-};
+import sql from "../db/sql";
+import type { DeliveryRequest } from "./types";
 
 const deliveries: DeliveryRequest[] = [
   { id: "1", pickup: "Bakery", destination: "Clock Tower", status: "active" },
@@ -24,8 +20,8 @@ const deliveries: DeliveryRequest[] = [
   },
 ];
 
-export function getAllDeliveries(): DeliveryRequest[] {
-  return deliveries;
+export async function getAllDeliveries(): Promise<DeliveryRequest[]> {
+  return await sql<DeliveryRequest[]>`SELECT * FROM deliveries`;
 }
 
 export function getDeliveryById(id: string): DeliveryRequest | null {

@@ -1,7 +1,8 @@
 import { getAllDeliveries } from "../lib/deliveriesService/deliveriesService";
 
-export default function Home() {
-  const delivery = getAllDeliveries()[0];
+export default async function Home() {
+  const deliveries = await getAllDeliveries();
+  const delivery = deliveries[0];
   return (
     <div>
       <h1>{delivery.id}</h1>
