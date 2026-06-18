@@ -7,7 +7,6 @@ export default async function DeliveryList({
   searchParams,
 }: PageProps<"/deliveries">) {
   const { status }: { status?: DeliveryStatus } = await searchParams;
-  console.log("🚀 ~ DeliveryList ~ searchParams:", searchParams);
 
   const deliveries = await getAllDeliveries(status);
 

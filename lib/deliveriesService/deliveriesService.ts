@@ -35,3 +35,9 @@ export async function getAllDeliveries(
 export function getDeliveryById(id: string): DeliveryRequest | null {
   return deliveries.find((d) => d.id === id) || null;
 }
+
+export async function createDelivery(pickup: string, destination: string) {
+  return await sql<DeliveryRequest[]>`
+    INSERT INTO deliveries (pickup, destination) VALUES (${pickup}, ${destination}) RETURNING *
+  `;
+}
