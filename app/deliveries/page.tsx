@@ -33,7 +33,7 @@ export default async function DeliveryList({
                 <CardAction>
                   <Button>
                     <Link href={`/deliveries/${d.id}`}>
-                      <p>{d.id}</p>
+                      <p>Details {d.id}</p>
                     </Link>
                   </Button>
                 </CardAction>

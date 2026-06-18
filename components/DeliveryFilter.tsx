@@ -3,6 +3,15 @@
 import { DELIVERY_STATUSES } from "@/lib/deliveriesService/types";
 import { usePathname, useRouter } from "next/navigation";
 import type { ChangeEvent } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 export default function DeliveryFilter({ value }: { value: string }) {
   const router = useRouter();
@@ -15,20 +24,23 @@ export default function DeliveryFilter({ value }: { value: string }) {
   }
 
   return (
-    <div>
-      <select
-        name="status-select"
-        id="status_id"
-        value={value}
-        onChange={handleChange}
-      >
-        <option value="all">all</option>
-        {DELIVERY_STATUSES.map((s) => (
-          <option key={s} value={s}>
-            {s}
-          </option>
-        ))}
-      </select>
-    </div>
+    <Select items={DELIVERY_STATUSES}>
+      <SelectTrigger className="w-full max-w-48">
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Select status</SelectLabel>
+          <SelectItem key="all" value="all">
+            all
+          </SelectItem>
+          {DELIVERY_STATUSES.map((s) => (
+            <SelectItem key={s} value={s}>
+              {s}
+            </SelectItem>
+          ))}
+        </SelectGroup>
+      </SelectContent>
+    </Select>
   );
 }
